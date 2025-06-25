@@ -24,23 +24,23 @@ const PartnerDashboard = () => {
     investment: 120000,
     revenue: 0
   }];
-  return <div className="p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-dark mb-2">
+  return <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">
           Portfolio Overview
         </h1>
-        <p className="text-neutral-dark text-opacity-70">
+        <p className="text-neutral-dark text-opacity-70 text-sm sm:text-base">
           Monitor your investments and company performance
         </p>
       </div>
       {/* Dashboard content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Company Status Cards */}
         <div className="lg:col-span-2">
-          <h3 className="text-lg font-bold text-neutral-dark mb-4">
+          <h3 className="text-base sm:text-lg font-bold text-neutral-dark mb-4">
             Company Status
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {companies.map(company => <div key={company.id} className={`rounded-lg p-5 border ${company.status === 'active' ? 'border-blue-200 shadow-sm shadow-blue-100' : 'border-orange-200 shadow-sm shadow-orange-100'}`}>
                 <div className="flex justify-between items-start mb-3">
                   <h4 className="font-bold text-lg text-neutral-dark">

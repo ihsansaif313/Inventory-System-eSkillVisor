@@ -65,18 +65,18 @@ const PasswordReset = () => {
     const secs = seconds % 60;
     return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
-  return <div className="min-h-screen w-full gradient-bg flex items-center justify-center relative overflow-hidden">
+  return <div className="min-h-screen w-full gradient-bg flex items-center justify-center relative overflow-hidden px-4 sm:px-6 lg:px-8">
       <FloatingParticles />
-      <div className="glass-card w-full max-w-md p-8 z-10">
+      <div className="glass-card w-full max-w-md p-6 sm:p-8 z-10">
         {!isSuccess ? <>
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-white mb-2">
+            <div className="text-center mb-6 sm:mb-8">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Reset Password
               </h1>
-              <p className="text-white text-opacity-80">
+              <p className="text-white text-opacity-80 text-sm sm:text-base">
                 Create a new secure password
               </p>
-              <div className="mt-2 text-white text-opacity-70 text-sm">
+              <div className="mt-2 text-white text-opacity-70 text-xs sm:text-sm">
                 Session expires in:{' '}
                 <span className="font-medium">{formatTime(remainingTime)}</span>
               </div>

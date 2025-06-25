@@ -1,20 +1,20 @@
 import React from 'react';
 import { UserPlusIcon, BuildingIcon } from 'lucide-react';
 const ManagerDashboard = () => {
-  return <div className="p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-dark mb-2">
+  return <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">
           Operations Dashboard
         </h1>
-        <p className="text-neutral-dark text-opacity-70">
+        <p className="text-neutral-dark text-opacity-70 text-sm sm:text-base">
           Manage partners and companies
         </p>
       </div>
       {/* Dashboard content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Financial Summary */}
-        <div className="data-card">
-          <h3 className="text-lg font-bold text-neutral-dark mb-4">
+        <div className="data-card md:col-span-1 lg:col-span-1">
+          <h3 className="text-base sm:text-lg font-bold text-neutral-dark mb-4">
             Financial Summary
           </h3>
           {/* ROI Speedometer (simplified version) */}

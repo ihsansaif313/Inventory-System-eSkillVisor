@@ -104,39 +104,40 @@ const NotificationsPage = () => {
     return buttons;
   };
   const filteredNotifications = filter === 'all' ? notifications : filter === 'unread' ? notifications.filter(n => !n.read) : notifications.filter(n => n.type === filter);
-  return <div className="p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-dark mb-2">
+  return <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">
           Notifications
         </h1>
-        <p className="text-neutral-dark text-opacity-70">
+        <p className="text-neutral-dark text-opacity-70 text-sm sm:text-base">
           Stay updated with the latest activities and alerts
         </p>
       </div>
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between space-y-3 sm:space-y-0">
-          <div className="flex space-x-2">{getFilterButtons()}</div>
-          <button className="text-sm text-primary hover:text-primary-light flex items-center" onClick={markAllAsRead}>
-            <CheckIcon size={16} className="mr-1" />
-            Mark all as read
+        <div className="p-3 sm:p-4 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between space-y-3 sm:space-y-0">
+          <div className="flex flex-wrap gap-2">{getFilterButtons()}</div>
+          <button className="text-xs sm:text-sm text-primary hover:text-primary-light flex items-center" onClick={markAllAsRead}>
+            <CheckIcon size={14} className="mr-1 sm:w-4 sm:h-4" />
+            <span className="hidden sm:inline">Mark all as read</span>
+            <span className="sm:hidden">Mark all</span>
           </button>
         </div>
         <div className="divide-y divide-gray-200 max-h-[calc(100vh-250px)] overflow-y-auto">
-          {filteredNotifications.length > 0 ? filteredNotifications.map(notification => <div key={notification.id} className={`p-4 hover:bg-gray-50 transition-colors ${notification.read ? 'opacity-75' : ''}`}>
+          {filteredNotifications.length > 0 ? filteredNotifications.map(notification => <div key={notification.id} className={`p-3 sm:p-4 hover:bg-gray-50 transition-colors ${notification.read ? 'opacity-75' : ''}`}>
                 <div className="flex items-start">
                   {getNotificationIcon(notification.type)}
-                  <div className="ml-3 flex-1">
-                    <div className="flex justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-neutral-dark flex items-center">
-                          {notification.title}
-                          {!notification.read && <span className="ml-2 h-2 w-2 rounded-full bg-primary"></span>}
+                  <div className="ml-2 sm:ml-3 flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-row sm:justify-between">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs sm:text-sm font-medium text-neutral-dark flex items-center">
+                          <span className="truncate">{notification.title}</span>
+                          {!notification.read && <span className="ml-2 h-2 w-2 rounded-full bg-primary flex-shrink-0"></span>}
                         </p>
-                        <p className="text-sm text-gray-500 mt-1">
+                        <p className="text-xs sm:text-sm text-gray-500 mt-1">
                           {notification.message}
                         </p>
                       </div>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-gray-500 mt-1 sm:mt-0 sm:ml-4 flex-shrink-0">
                         {notification.time}
                       </span>
                     </div>

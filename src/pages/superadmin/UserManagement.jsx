@@ -7,8 +7,8 @@ const UserManagement = () => {
   const [newUserData, setNewUserData] = useState({
     name: '',
     email: '',
-    jobTitle: '',
-    phone: ''
+    phone: '',
+    cnic: ''
   });
   // Mock data
   const managers = [{
@@ -117,47 +117,50 @@ const UserManagement = () => {
     setNewUserData({
       name: '',
       email: '',
-      jobTitle: '',
-      phone: ''
+      phone: '',
+      cnic: ''
     });
   };
   const filteredManagers = managers.filter(manager => manager.name.toLowerCase().includes(searchQuery.toLowerCase()) || manager.email.toLowerCase().includes(searchQuery.toLowerCase()));
   const filteredPartners = partners.filter(partner => partner.name.toLowerCase().includes(searchQuery.toLowerCase()) || partner.email.toLowerCase().includes(searchQuery.toLowerCase()) || partner.manager.toLowerCase().includes(searchQuery.toLowerCase()));
-  return <div className="p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-dark mb-2">
+  return <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">
           User Management
         </h1>
-        <p className="text-neutral-dark text-opacity-70">
+        <p className="text-neutral-dark text-opacity-70 text-sm sm:text-base">
           Manage managers and partners across the platform
         </p>
       </div>
       {/* Action Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 space-y-4 md:space-y-0">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 space-y-4 lg:space-y-0">
         <div className="flex space-x-2">
-          <button className={`px-4 py-2 rounded-lg font-medium ${activeTab === 'managers' ? 'bg-primary text-white' : 'bg-white text-neutral-dark'}`} onClick={() => setActiveTab('managers')}>
+          <button className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base ${activeTab === 'managers' ? 'bg-primary text-white' : 'bg-white text-neutral-dark'}`} onClick={() => setActiveTab('managers')}>
             Managers
           </button>
-          <button className={`px-4 py-2 rounded-lg font-medium ${activeTab === 'partners' ? 'bg-primary text-white' : 'bg-white text-neutral-dark'}`} onClick={() => setActiveTab('partners')}>
+          <button className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base ${activeTab === 'partners' ? 'bg-primary text-white' : 'bg-white text-neutral-dark'}`} onClick={() => setActiveTab('partners')}>
             Partners
           </button>
         </div>
-        <div className="flex space-x-3">
-          <div className="relative">
+        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 w-full lg:w-auto">
+          <div className="relative flex-1 sm:flex-none">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <SearchIcon className="h-5 w-5 text-gray-400" />
+              <SearchIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
             </div>
-            <input type="text" placeholder="Search users..." className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+            <input type="text" placeholder="Search users..." className="w-full sm:w-auto pl-9 sm:pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm sm:text-base" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
           </div>
-          <button className="p-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-            <FilterIcon className="h-5 w-5 text-gray-500" />
-          </button>
-          <button className="btn-primary flex items-center px-4" onClick={() => setShowCreateModal(true)}>
-            <UserPlusIcon className="h-5 w-5 mr-2" />
-            <span>
-              {activeTab === 'managers' ? 'Add Manager' : 'Add Partner'}
-            </span>
-          </button>
+          <div className="flex space-x-3">
+            <button className="p-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+              <FilterIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />
+            </button>
+            <button className="btn-primary flex items-center px-3 sm:px-4 text-sm sm:text-base" onClick={() => setShowCreateModal(true)}>
+              <UserPlusIcon className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">
+                {activeTab === 'managers' ? 'Add Manager' : 'Add Partner'}
+              </span>
+              <span className="sm:hidden">Add</span>
+            </button>
+          </div>
         </div>
       </div>
       {/* Data Table */}
@@ -166,22 +169,22 @@ const UserManagement = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Name
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
                     Email
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
                     Companies
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
                     Partners
                   </th>
-                  <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -320,7 +323,7 @@ const UserManagement = () => {
                       <form onSubmit={handleCreateUser} className="space-y-4">
                         <div>
                           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                            {activeTab === 'managers' ? 'Full Name' : 'Company Name'}
+                            {activeTab === 'managers' ? 'Full Name' : 'Partner Name'}
                           </label>
                           <input type="text" id="name" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newUserData.name} onChange={e => setNewUserData({
                         ...newUserData,
@@ -336,35 +339,24 @@ const UserManagement = () => {
                         email: e.target.value
                       })} required />
                         </div>
-                        {activeTab === 'managers' && <div>
-                            <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700">
-                              Job Title
-                            </label>
-                            <input type="text" id="jobTitle" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newUserData.jobTitle} onChange={e => setNewUserData({
-                        ...newUserData,
-                        jobTitle: e.target.value
-                      })} />
-                          </div>}
                         <div>
                           <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                            Phone Number
+                            {activeTab === 'managers' ? 'Phone Number' : 'Contact Number'}
                           </label>
                           <input type="tel" id="phone" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newUserData.phone} onChange={e => setNewUserData({
                         ...newUserData,
                         phone: e.target.value
-                      })} />
+                      })} required />
                         </div>
-                        {activeTab === 'partners' && <div>
-                            <label htmlFor="manager" className="block text-sm font-medium text-gray-700">
-                              Assign Manager
-                            </label>
-                            <select id="manager" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary">
-                              <option value="">Select a manager</option>
-                              {managers.filter(m => m.status === 'active').map(manager => <option key={manager.id} value={manager.id}>
-                                    {manager.name}
-                                  </option>)}
-                            </select>
-                          </div>}
+                        <div>
+                          <label htmlFor="cnic" className="block text-sm font-medium text-gray-700">
+                            CNIC
+                          </label>
+                          <input type="text" id="cnic" placeholder="00000-0000000-0" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newUserData.cnic} onChange={e => setNewUserData({
+                        ...newUserData,
+                        cnic: e.target.value
+                      })} required />
+                        </div>
                         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                           <button type="submit" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm">
                             Create

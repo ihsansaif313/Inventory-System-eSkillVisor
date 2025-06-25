@@ -143,12 +143,12 @@ const CompanyOversight = () => {
       investment: ''
     });
   };
-  return <div className="p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-dark mb-2">
+  return <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">
           Company Oversight
         </h1>
-        <p className="text-neutral-dark text-opacity-70">
+        <p className="text-neutral-dark text-opacity-70 text-sm sm:text-base">
           Manage and approve companies across the platform
         </p>
       </div>

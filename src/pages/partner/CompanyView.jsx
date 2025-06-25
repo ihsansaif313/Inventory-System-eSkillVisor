@@ -173,24 +173,28 @@ const PartnerCompanyView = () => {
         </div>
       </div>;
   }
-  return <div className="p-6">
+  return <div className="p-4 sm:p-6">
       {/* Company Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between">
-          <div className="flex items-center mb-4 md:mb-0">
-            <div className="h-16 w-16 rounded-lg bg-secondary bg-opacity-10 flex items-center justify-center text-secondary mr-4">
-              <BuildingIcon className="h-8 w-8" />
+      <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 mb-6">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between">
+          <div className="flex items-center mb-4 lg:mb-0">
+            <div className="h-12 w-12 sm:h-16 sm:w-16 rounded-lg bg-secondary bg-opacity-10 flex items-center justify-center text-secondary mr-3 sm:mr-4">
+              <BuildingIcon className="h-6 w-6 sm:h-8 sm:w-8" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-neutral-dark">
+              <h1 className="text-xl sm:text-2xl font-bold text-neutral-dark">
                 {company.name}
               </h1>
-              <div className="flex items-center mt-1 text-sm text-gray-500">
-                <CalendarIcon className="h-4 w-4 mr-1" />
-                <span>Established: {company.dateCreated}</span>
-                <span className="mx-2">•</span>
-                <UserIcon className="h-4 w-4 mr-1" />
-                <span>Manager: {company.manager}</span>
+              <div className="flex flex-col sm:flex-row sm:items-center mt-1 text-xs sm:text-sm text-gray-500">
+                <div className="flex items-center">
+                  <CalendarIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                  <span>Established: {company.dateCreated}</span>
+                </div>
+                <span className="hidden sm:inline mx-2">•</span>
+                <div className="flex items-center">
+                  <UserIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                  <span>Manager: {company.manager}</span>
+                </div>
               </div>
             </div>
           </div>

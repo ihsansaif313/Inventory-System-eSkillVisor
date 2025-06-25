@@ -78,24 +78,25 @@ const SettingsPage = () => {
     console.log('Updating notification settings:', notificationSettings);
     alert('Notification settings updated successfully!');
   };
-  return <div className="p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-dark mb-2">Settings</h1>
-        <p className="text-neutral-dark text-opacity-70">
+  return <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">Settings</h1>
+        <p className="text-neutral-dark text-opacity-70 text-sm sm:text-base">
           Manage your account settings and preferences
         </p>
       </div>
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col lg:flex-row">
           {/* Sidebar */}
-          <div className="w-full md:w-64 bg-gray-50 p-4 border-r border-gray-200">
-            <nav className="space-y-1">
-              <button className={`w-full flex items-center px-4 py-3 text-sm rounded-lg ${activeTab === 'profile' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setActiveTab('profile')}>
-                <UserIcon size={18} className="mr-3" />
-                Profile Information
+          <div className="w-full lg:w-64 bg-gray-50 p-3 sm:p-4 border-b lg:border-b-0 lg:border-r border-gray-200">
+            <nav className="flex lg:flex-col space-x-1 lg:space-x-0 lg:space-y-1 overflow-x-auto lg:overflow-x-visible">
+              <button className={`flex-shrink-0 lg:w-full flex items-center px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm rounded-lg whitespace-nowrap ${activeTab === 'profile' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setActiveTab('profile')}>
+                <UserIcon size={16} className="mr-2 sm:mr-3" />
+                <span className="hidden sm:inline">Profile Information</span>
+                <span className="sm:hidden">Profile</span>
               </button>
-              <button className={`w-full flex items-center px-4 py-3 text-sm rounded-lg ${activeTab === 'security' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setActiveTab('security')}>
-                <ShieldIcon size={18} className="mr-3" />
+              <button className={`flex-shrink-0 lg:w-full flex items-center px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm rounded-lg whitespace-nowrap ${activeTab === 'security' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setActiveTab('security')}>
+                <ShieldIcon size={16} className="mr-2 sm:mr-3" />
                 Security
               </button>
               <button className={`w-full flex items-center px-4 py-3 text-sm rounded-lg ${activeTab === 'notifications' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setActiveTab('notifications')}>

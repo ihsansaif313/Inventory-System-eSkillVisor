@@ -1,19 +1,19 @@
 import React, { useState, createContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/auth/Login';
-import PasswordReset from './pages/auth/PasswordReset';
-import SuperadminDashboard from './pages/superadmin/Dashboard';
-import ManagerDashboard from './pages/manager/Dashboard';
-import PartnerDashboard from './pages/partner/Dashboard';
-import UserManagement from './pages/superadmin/UserManagement';
-import CompanyOversight from './pages/superadmin/CompanyOversight';
-import PartnerManagement from './pages/manager/PartnerManagement';
-import CompanyManagement from './pages/manager/CompanyManagement';
-import PartnerCompanyList from './pages/partner/CompanyList';
-import PartnerCompanyView from './pages/partner/CompanyView';
-import MainLayout from './components/layout/MainLayout';
-import NotificationsPage from './pages/notifications/NotificationsPage';
-import SettingsPage from './pages/settings/SettingsPage';
+import Login from './pages/auth/Login.jsx';
+import PasswordReset from './pages/auth/PasswordReset.jsx';
+import SuperadminDashboard from './pages/superadmin/Dashboard.jsx';
+import ManagerDashboard from './pages/manager/Dashboard.jsx';
+import PartnerDashboard from './pages/partner/Dashboard.jsx';
+import UserManagement from './pages/superadmin/UserManagement.jsx';
+import CompanyOversight from './pages/superadmin/CompanyOversight.jsx';
+import PartnerManagement from './pages/manager/PartnerManagement.jsx';
+import CompanyManagement from './pages/manager/CompanyManagement.jsx';
+import PartnerCompanyList from './pages/partner/CompanyList.jsx';
+import PartnerCompanyView from './pages/partner/CompanyView.jsx';
+import MainLayout from './components/layout/MainLayout.jsx';
+import NotificationsPage from './pages/notifications/NotificationsPage.jsx';
+import SettingsPage from './pages/settings/SettingsPage.jsx';
 // Demo accounts
 const demoAccounts = {
   'admin@enterprise.com': {

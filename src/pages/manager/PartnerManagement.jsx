@@ -4,10 +4,10 @@ const PartnerManagement = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [newPartnerData, setNewPartnerData] = useState({
-    companyName: '',
-    contactName: '',
+    partnerName: '',
     email: '',
-    phone: ''
+    phone: '',
+    cnic: ''
   });
   // Mock data
   const partners = [{
@@ -74,19 +74,19 @@ const PartnerManagement = () => {
     setShowCreateModal(false);
     // Reset form
     setNewPartnerData({
-      companyName: '',
-      contactName: '',
+      partnerName: '',
       email: '',
-      phone: ''
+      phone: '',
+      cnic: ''
     });
   };
   const filteredPartners = partners.filter(partner => partner.name.toLowerCase().includes(searchQuery.toLowerCase()) || partner.email.toLowerCase().includes(searchQuery.toLowerCase()));
-  return <div className="p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-dark mb-2">
+  return <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">
           Partner Management
         </h1>
-        <p className="text-neutral-dark text-opacity-70">
+        <p className="text-neutral-dark text-opacity-70 text-sm sm:text-base">
           Create and manage partners
         </p>
       </div>
@@ -201,21 +201,12 @@ const PartnerManagement = () => {
                     <div className="mt-4">
                       <form onSubmit={handleCreatePartner} className="space-y-4">
                         <div>
-                          <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
-                            Company Name
+                          <label htmlFor="partnerName" className="block text-sm font-medium text-gray-700">
+                            Partner Name
                           </label>
-                          <input type="text" id="companyName" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newPartnerData.companyName} onChange={e => setNewPartnerData({
+                          <input type="text" id="partnerName" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newPartnerData.partnerName} onChange={e => setNewPartnerData({
                         ...newPartnerData,
-                        companyName: e.target.value
-                      })} required />
-                        </div>
-                        <div>
-                          <label htmlFor="contactName" className="block text-sm font-medium text-gray-700">
-                            Contact Name
-                          </label>
-                          <input type="text" id="contactName" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newPartnerData.contactName} onChange={e => setNewPartnerData({
-                        ...newPartnerData,
-                        contactName: e.target.value
+                        partnerName: e.target.value
                       })} required />
                         </div>
                         <div>
@@ -229,12 +220,21 @@ const PartnerManagement = () => {
                         </div>
                         <div>
                           <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                            Phone Number
+                            Contact Number
                           </label>
                           <input type="tel" id="phone" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newPartnerData.phone} onChange={e => setNewPartnerData({
                         ...newPartnerData,
                         phone: e.target.value
-                      })} />
+                      })} required />
+                        </div>
+                        <div>
+                          <label htmlFor="cnic" className="block text-sm font-medium text-gray-700">
+                            CNIC
+                          </label>
+                          <input type="text" id="cnic" placeholder="00000-0000000-0" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" value={newPartnerData.cnic} onChange={e => setNewPartnerData({
+                        ...newPartnerData,
+                        cnic: e.target.value
+                      })} required />
                         </div>
                         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                           <button type="submit" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm">

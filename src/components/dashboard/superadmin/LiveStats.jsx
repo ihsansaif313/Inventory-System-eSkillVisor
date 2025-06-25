@@ -2,22 +2,23 @@ import React from 'react';
 import { UsersIcon, BuildingIcon, ClockIcon, TrendingUpIcon } from 'lucide-react';
 const LiveStats = () => {
   return <div className="data-card">
-      <h3 className="text-lg font-bold text-neutral-dark mb-4">
+      <h3 className="text-base sm:text-lg font-bold text-neutral-dark mb-4">
         Live Platform Stats
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="bg-white rounded-lg shadow-sm p-3 sm:p-4 border border-gray-100 hover:shadow-md transition-shadow">
           <div className="flex items-center">
-            <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-              <UsersIcon size={24} />
+            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+              <UsersIcon size={20} className="sm:w-6 sm:h-6" />
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-neutral-dark">Managers</p>
+            <div className="ml-3 sm:ml-4">
+              <p className="text-xs sm:text-sm font-medium text-neutral-dark">Managers</p>
               <div className="flex items-baseline">
-                <p className="text-2xl font-bold text-neutral-dark">24</p>
-                <p className="ml-2 text-xs text-green-600 flex items-center">
-                  <TrendingUpIcon size={12} className="mr-1" />
-                  +2 this month
+                <p className="text-xl sm:text-2xl font-bold text-neutral-dark">24</p>
+                <p className="ml-1 sm:ml-2 text-xs text-green-600 flex items-center">
+                  <TrendingUpIcon size={10} className="mr-1 sm:w-3 sm:h-3" />
+                  <span className="hidden sm:inline">+2 this month</span>
+                  <span className="sm:hidden">+2</span>
                 </p>
               </div>
             </div>

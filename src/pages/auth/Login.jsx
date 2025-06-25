@@ -57,14 +57,14 @@ const Login = () => {
     setPassword(demoPassword);
     setShowDemoAccounts(false);
   };
-  return <div className="min-h-screen w-full gradient-bg flex items-center justify-center relative overflow-hidden">
+  return <div className="min-h-screen w-full gradient-bg flex items-center justify-center relative overflow-hidden px-4 sm:px-6 lg:px-8">
       <FloatingParticles />
-      <div className="glass-card w-full max-w-md p-8 z-10">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
+      <div className="glass-card w-full max-w-md p-6 sm:p-8 z-10">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
             Enterprise Portal
           </h1>
-          <p className="text-white text-opacity-80">Sign in to your account</p>
+          <p className="text-white text-opacity-80 text-sm sm:text-base">Sign in to your account</p>
         </div>
         {loginError && <div className="mb-6 p-3 bg-red-500 bg-opacity-20 border border-red-500 border-opacity-30 rounded-lg text-white flex items-center">
             <AlertCircleIcon className="h-5 w-5 mr-2 flex-shrink-0" />

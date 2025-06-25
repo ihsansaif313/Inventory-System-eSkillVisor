@@ -1,37 +1,39 @@
 import React from 'react';
 import { UserPlusIcon, UsersIcon, Building2Icon, ClockIcon, CheckCircleIcon, BarChart3Icon, TrendingUpIcon, ArrowRightIcon } from 'lucide-react';
-import ApprovalHeatmap from '../../components/dashboard/superadmin/ApprovalHeatmap';
-import LiveStats from '../../components/dashboard/superadmin/LiveStats';
-import ActivityStream from '../../components/dashboard/superadmin/ActivityStream';
+import ApprovalHeatmap from '../../components/dashboard/superadmin/ApprovalHeatmap.jsx';
+import LiveStats from '../../components/dashboard/superadmin/LiveStats.jsx';
+import ActivityStream from '../../components/dashboard/superadmin/ActivityStream.jsx';
 const SuperadminDashboard = () => {
-  return <div className="p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-dark mb-2">
+  return <div className="p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">
           Omniview Dashboard
         </h1>
-        <p className="text-neutral-dark text-opacity-70">
+        <p className="text-neutral-dark text-opacity-70 text-sm sm:text-base">
           Complete overview of platform performance and activity
         </p>
       </div>
       {/* Dashboard grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Live Stats Panel */}
-        <div className="lg:col-span-2">
+        <div className="md:col-span-2 lg:col-span-2">
           <LiveStats />
         </div>
         {/* Quick Actions */}
-        <div className="data-card">
-          <h3 className="text-lg font-bold text-neutral-dark mb-4">
+        <div className="data-card md:col-span-1">
+          <h3 className="text-base sm:text-lg font-bold text-neutral-dark mb-4">
             Quick Actions
           </h3>
           <div className="space-y-3">
-            <button className="btn-primary w-full flex items-center justify-center">
-              <UserPlusIcon size={18} className="mr-2" />
-              Create New User
+            <button className="btn-primary w-full flex items-center justify-center text-sm sm:text-base">
+              <UserPlusIcon size={16} className="mr-2 sm:mr-2" />
+              <span className="hidden sm:inline">Create New User</span>
+              <span className="sm:hidden">New User</span>
             </button>
-            <button className="btn-secondary w-full flex items-center justify-center">
-              <Building2Icon size={18} className="mr-2" />
-              Register Company
+            <button className="btn-secondary w-full flex items-center justify-center text-sm sm:text-base">
+              <Building2Icon size={16} className="mr-2 sm:mr-2" />
+              <span className="hidden sm:inline">Register Company</span>
+              <span className="sm:hidden">New Company</span>
             </button>
           </div>
           <div className="mt-4 pt-4 border-t border-gray-100">

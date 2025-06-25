@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MenuIcon, XIcon, HomeIcon, UsersIcon, Building2Icon, LogOutIcon, ChevronDownIcon, FileTextIcon, BellIcon, SettingsIcon } from 'lucide-react';
-import { AuthContext } from '../../App';
+import { AuthContext } from '../../App.jsx';
 const MainLayout = ({
   children
 }) => {
@@ -98,14 +98,14 @@ const MainLayout = ({
       <div className={`fixed inset-y-0 left-0 z-30 w-64 transform bg-secondary transition duration-300 ease-in-out md:relative md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex h-full flex-col">
           {/* Sidebar header */}
-          <div className="flex items-center justify-between px-4 py-5 border-b border-secondary-dark">
+          <div className="flex items-center justify-between px-4 py-4 sm:py-5 border-b border-secondary-dark">
             <div className="flex items-center">
-              <span className="text-xl font-bold text-white">
+              <span className="text-lg sm:text-xl font-bold text-white">
                 Enterprise Portal
               </span>
             </div>
-            <button onClick={() => setSidebarOpen(false)} className="text-white md:hidden">
-              <XIcon size={24} />
+            <button onClick={() => setSidebarOpen(false)} className="text-white md:hidden p-1">
+              <XIcon size={20} />
             </button>
           </div>
           {/* User info */}
@@ -133,10 +133,10 @@ const MainLayout = ({
                 e.preventDefault();
                 navigate(item.path);
                 setSidebarOpen(false);
-              }} className={`flex items-center px-4 py-3 text-sm rounded-lg ${location.pathname === item.path ? 'bg-primary text-white' : 'text-white text-opacity-80 hover:bg-secondary-dark'}`}>
-                    <span className="mr-3">{item.icon}</span>
-                    {item.name}
-                    {item.badge && <span className="ml-auto bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+              }} className={`flex items-center px-3 sm:px-4 py-3 text-sm rounded-lg transition-colors ${location.pathname === item.path ? 'bg-primary text-white' : 'text-white text-opacity-80 hover:bg-secondary-dark hover:text-opacity-100'}`}>
+                    <span className="mr-2 sm:mr-3 flex-shrink-0">{item.icon}</span>
+                    <span className="truncate">{item.name}</span>
+                    {item.badge && <span className="ml-auto bg-red-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full min-w-[1.25rem] text-center">
                         {item.badge}
                       </span>}
                   </a>
@@ -156,17 +156,17 @@ const MainLayout = ({
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Top header */}
         <header className="bg-white shadow-sm z-10">
-          <div className="px-4 py-4 flex items-center justify-between">
-            <button onClick={() => setSidebarOpen(true)} className="text-neutral-dark md:hidden">
-              <MenuIcon size={24} />
+          <div className="px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
+            <button onClick={() => setSidebarOpen(true)} className="text-neutral-dark md:hidden p-1 hover:bg-gray-100 rounded">
+              <MenuIcon size={20} />
             </button>
-            <div className="md:hidden font-montserrat font-bold text-lg">
+            <div className="md:hidden font-montserrat font-bold text-base sm:text-lg">
               Enterprise Portal
             </div>
-            <div className="flex items-center space-x-4">
-              <button className="relative p-1 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-600" onClick={() => navigate(`/${userRole}/notifications`)}>
-                <BellIcon size={20} />
-                {notificationsCount > 0 && <span className="absolute top-0 right-0 block h-4 w-4 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center">
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <button className="relative p-1.5 sm:p-2 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-600 transition-colors" onClick={() => navigate(`/${userRole}/notifications`)}>
+                <BellIcon size={18} className="sm:w-5 sm:h-5" />
+                {notificationsCount > 0 && <span className="absolute -top-1 -right-1 block h-4 w-4 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center">
                     {notificationsCount}
                   </span>}
               </button>
