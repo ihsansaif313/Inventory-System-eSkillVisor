@@ -1,49 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BuildingIcon, SearchIcon, TrendingUpIcon, TrendingDownIcon, CalendarIcon, ArrowRightIcon } from 'lucide-react';
+import { mockCompanies } from '../../data/mockData.js';
+import CompanyLogo from '../../components/ui/CompanyLogo.jsx';
 const PartnerCompanyList = () => {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  // Mock company data - in a real app this would come from an API
-  const mockCompanies = [{
-    id: '1',
-    name: 'Acme Corp',
-    manager: 'Emily Johnson',
-    status: 'active',
-    investment: 250000,
-    revenue: 320000,
-    profit: 70000,
-    roi: 28,
-    dateCreated: '2023-05-15'
-  }, {
-    id: '2',
-    name: 'TechStart Inc',
-    manager: 'Sarah Davis',
-    status: 'active',
-    investment: 180000,
-    revenue: 210000,
-    profit: 30000,
-    roi: 16.7,
-    dateCreated: '2023-06-22'
-  }, {
-    id: '3',
-    name: 'Innovate Group',
-    manager: 'Robert Wilson',
-    status: 'pending',
-    investment: 120000,
-    revenue: 0,
-    profit: 0,
-    roi: 0,
-    dateCreated: '2023-08-10'
-  }];
+  // Use enhanced mock data
+  const companiesData = mockCompanies.slice(0, 3); // Show first 3 companies for partner
   // Fetch companies
   useEffect(() => {
     // Simulate API call
     setLoading(true);
     setTimeout(() => {
-      setCompanies(mockCompanies);
+      setCompanies(companiesData);
       setLoading(false);
     }, 800);
   }, []);
@@ -80,16 +52,21 @@ const PartnerCompanyList = () => {
             <div className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center">
-                  <div className="h-12 w-12 rounded-lg bg-secondary bg-opacity-10 flex items-center justify-center text-secondary mr-3">
-                    <BuildingIcon className="h-6 w-6" />
-                  </div>
-                  <div>
+                  <CompanyLogo
+                    logoUrl={company.logoUrl}
+                    companyName={company.name}
+                    size="lg"
+                    showInitials={true}
+                  />
+                  <div className="ml-3">
                     <h3 className="text-lg font-bold text-neutral-dark">
                       {company.name}
                     </h3>
                     <div className="flex items-center mt-1 text-xs text-gray-500">
+                      <span>{company.industry}</span>
+                      <span className="mx-1">•</span>
                       <CalendarIcon className="h-3 w-3 mr-1" />
-                      <span>Established: {company.dateCreated}</span>
+                      <span>{company.dateCreated}</span>
                     </div>
                   </div>
                 </div>

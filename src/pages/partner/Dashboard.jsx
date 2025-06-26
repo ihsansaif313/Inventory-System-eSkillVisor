@@ -1,29 +1,10 @@
 import React from 'react';
-import { BuildingIcon, FileTextIcon, DollarSignIcon } from 'lucide-react';
+import { BuildingIcon, FileTextIcon, DollarSignIcon, TrendingUpIcon, TrendingDownIcon } from 'lucide-react';
+import { mockCompanies } from '../../data/mockData.js';
+import CompanyLogo from '../../components/ui/CompanyLogo.jsx';
 const PartnerDashboard = () => {
-  // Mock data for company status cards
-  const companies = [{
-    id: 1,
-    name: 'Acme Corp',
-    status: 'active',
-    documentCompletion: 100,
-    investment: 250000,
-    revenue: 320000
-  }, {
-    id: 2,
-    name: 'TechStart Inc',
-    status: 'active',
-    documentCompletion: 85,
-    investment: 180000,
-    revenue: 210000
-  }, {
-    id: 3,
-    name: 'Innovate Group',
-    status: 'pending',
-    documentCompletion: 75,
-    investment: 120000,
-    revenue: 0
-  }];
+  // Use enhanced mock data
+  const companies = mockCompanies.slice(0, 3); // Show first 3 companies for partner
   return <div className="p-4 sm:p-6">
       <div className="mb-6 sm:mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-neutral-dark mb-2">
@@ -42,10 +23,22 @@ const PartnerDashboard = () => {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {companies.map(company => <div key={company.id} className={`rounded-lg p-5 border ${company.status === 'active' ? 'border-blue-200 shadow-sm shadow-blue-100' : 'border-orange-200 shadow-sm shadow-orange-100'}`}>
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-bold text-lg text-neutral-dark">
-                    {company.name}
-                  </h4>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center">
+                    <CompanyLogo
+                      logoUrl={company.logoUrl}
+                      companyName={company.name}
+                      size="sm"
+                      showInitials={true}
+                      className="mr-3"
+                    />
+                    <div>
+                      <h4 className="font-bold text-lg text-neutral-dark">
+                        {company.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">{company.industry}</p>
+                    </div>
+                  </div>
                   <span className={`text-xs font-medium px-2 py-1 rounded-full ${company.status === 'active' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
                     {company.status === 'active' ? 'Active' : 'Pending'}
                   </span>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { BuildingIcon, FileTextIcon, DollarSignIcon, TrendingUpIcon, TrendingDownIcon, CalendarIcon, UserIcon } from 'lucide-react';
+import { mockCompanies } from '../../data/mockData.js';
+import CompanyLogo from '../../components/ui/CompanyLogo.jsx';
 const PartnerCompanyView = () => {
   const {
     id
@@ -8,8 +10,8 @@ const PartnerCompanyView = () => {
   const [company, setCompany] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
   const [loading, setLoading] = useState(true);
-  // Mock company data
-  const mockCompanies = [{
+  // Use enhanced mock data
+  const companiesData = [{
     id: '1',
     name: 'Acme Corp',
     manager: 'Emily Johnson',
@@ -156,7 +158,7 @@ const PartnerCompanyView = () => {
     // Simulate API call
     setLoading(true);
     setTimeout(() => {
-      const foundCompany = mockCompanies.find(c => c.id === id);
+      const foundCompany = companiesData.find(c => c.id === id) || mockCompanies.find(c => c.id.toString() === id);
       setCompany(foundCompany || mockCompanies[0]); // Default to first company if not found
       setLoading(false);
     }, 800);
@@ -178,22 +180,30 @@ const PartnerCompanyView = () => {
       <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 mb-6">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between">
           <div className="flex items-center mb-4 lg:mb-0">
-            <div className="h-12 w-12 sm:h-16 sm:w-16 rounded-lg bg-secondary bg-opacity-10 flex items-center justify-center text-secondary mr-3 sm:mr-4">
-              <BuildingIcon className="h-6 w-6 sm:h-8 sm:w-8" />
-            </div>
+            <CompanyLogo
+              logoUrl={company.logoUrl}
+              companyName={company.name}
+              size="xl"
+              showInitials={true}
+              className="mr-3 sm:mr-4"
+            />
             <div>
               <h1 className="text-xl sm:text-2xl font-bold text-neutral-dark">
                 {company.name}
               </h1>
               <div className="flex flex-col sm:flex-row sm:items-center mt-1 text-xs sm:text-sm text-gray-500">
                 <div className="flex items-center">
+                  <span>{company.industry}</span>
+                </div>
+                <span className="hidden sm:inline mx-2">•</span>
+                <div className="flex items-center">
                   <CalendarIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                  <span>Established: {company.dateCreated}</span>
+                  <span>Est. {company.dateCreated}</span>
                 </div>
                 <span className="hidden sm:inline mx-2">•</span>
                 <div className="flex items-center">
                   <UserIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                  <span>Manager: {company.manager}</span>
+                  <span>{company.manager}</span>
                 </div>
               </div>
             </div>

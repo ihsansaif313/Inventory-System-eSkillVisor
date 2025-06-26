@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { BuildingIcon, SearchIcon, FilterIcon, MoreHorizontalIcon, EditIcon, TrashIcon, CheckIcon, XIcon, AlertTriangleIcon, FileTextIcon, DollarSignIcon, PlusIcon } from 'lucide-react';
+import { mockCompanies, mockPartners, mockManagers } from '../../data/mockData.js';
+import CompanyLogo from '../../components/ui/CompanyLogo.jsx';
 const CompanyOversight = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [showApprovalModal, setShowApprovalModal] = useState(false);
@@ -12,85 +14,11 @@ const CompanyOversight = () => {
     manager: '',
     investment: ''
   });
-  // Mock data for partners and managers
-  const partners = [{
-    id: 1,
-    name: 'John Smith'
-  }, {
-    id: 2,
-    name: 'Michael Brown'
-  }, {
-    id: 3,
-    name: 'Robert Wilson'
-  }, {
-    id: 4,
-    name: 'Jennifer Lee'
-  }, {
-    id: 5,
-    name: 'David Chen'
-  }];
-  const managers = [{
-    id: 1,
-    name: 'Emily Johnson'
-  }, {
-    id: 2,
-    name: 'Sarah Davis'
-  }, {
-    id: 3,
-    name: 'Michael Brown'
-  }];
-  // Mock data
-  const companies = [{
-    id: 1,
-    name: 'Acme Corp',
-    partner: 'John Smith',
-    manager: 'Emily Johnson',
-    status: 'active',
-    investment: 250000,
-    revenue: 320000,
-    documentComplete: true,
-    dateCreated: '2023-05-15'
-  }, {
-    id: 2,
-    name: 'TechStart Inc',
-    partner: 'Michael Brown',
-    manager: 'Sarah Davis',
-    status: 'active',
-    investment: 180000,
-    revenue: 210000,
-    documentComplete: true,
-    dateCreated: '2023-06-22'
-  }, {
-    id: 3,
-    name: 'Global Ventures',
-    partner: 'Robert Wilson',
-    manager: 'Emily Johnson',
-    status: 'pending_approval',
-    investment: 120000,
-    revenue: 0,
-    documentComplete: false,
-    dateCreated: '2023-08-10'
-  }, {
-    id: 4,
-    name: 'Future Fund',
-    partner: 'Jennifer Lee',
-    manager: 'Sarah Davis',
-    status: 'pending_approval',
-    investment: 300000,
-    revenue: 0,
-    documentComplete: true,
-    dateCreated: '2023-09-05'
-  }, {
-    id: 5,
-    name: 'Capital Partners',
-    partner: 'David Chen',
-    manager: 'Michael Brown',
-    status: 'active',
-    investment: 420000,
-    revenue: 380000,
-    documentComplete: true,
-    dateCreated: '2023-04-18'
-  }];
+  // Use enhanced mock data
+  const partners = mockPartners;
+  const managers = mockManagers;
+  // Use enhanced mock data
+  const companies = mockCompanies;
   const getStatusBadge = status => {
     switch (status) {
       case 'active':
@@ -214,15 +142,18 @@ const CompanyOversight = () => {
               {filteredCompanies.map(company => <tr key={company.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className="h-10 w-10 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center text-secondary">
-                        <BuildingIcon className="h-5 w-5" />
-                      </div>
+                      <CompanyLogo
+                        logoUrl={company.logoUrl}
+                        companyName={company.name}
+                        size="md"
+                        showInitials={true}
+                      />
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">
                           {company.name}
                         </div>
                         <div className="text-xs text-gray-500">
-                          Created: {company.dateCreated}
+                          {company.industry} • Created: {company.dateCreated}
                         </div>
                       </div>
                     </div>

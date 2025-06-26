@@ -1,5 +1,7 @@
 import React from 'react';
-import { UserPlusIcon, BuildingIcon } from 'lucide-react';
+import { UserPlusIcon, BuildingIcon, TrendingUpIcon, TrendingDownIcon } from 'lucide-react';
+import { mockCompanies } from '../../data/mockData.js';
+import CompanyLogo from '../../components/ui/CompanyLogo.jsx';
 const ManagerDashboard = () => {
   return <div className="p-4 sm:p-6">
       <div className="mb-6 sm:mb-8">
@@ -154,6 +156,54 @@ const ManagerDashboard = () => {
                   </div>
                 </div>
               </div>)}
+          </div>
+        </div>
+
+        {/* Recent Companies */}
+        <div className="data-card lg:col-span-3">
+          <h3 className="text-base sm:text-lg font-bold text-neutral-dark mb-4">
+            Recent Companies
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {mockCompanies.slice(0, 6).map(company => (
+              <div key={company.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-3">
+                  <CompanyLogo
+                    logoUrl={company.logoUrl}
+                    companyName={company.name}
+                    size="sm"
+                    showInitials={true}
+                  />
+                  <div className="ml-3 flex-1 min-w-0">
+                    <h4 className="text-sm font-medium text-gray-900 truncate">
+                      {company.name}
+                    </h4>
+                    <p className="text-xs text-gray-500 truncate">
+                      {company.industry}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center">
+                    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                      company.status === 'active'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {company.status === 'active' ? 'Active' : 'Pending'}
+                    </span>
+                  </div>
+                  <div className="flex items-center text-xs text-gray-500">
+                    {company.profit > 0 ? (
+                      <TrendingUpIcon size={12} className="text-green-500 mr-1" />
+                    ) : (
+                      <TrendingDownIcon size={12} className="text-red-500 mr-1" />
+                    )}
+                    {company.roi}% ROI
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

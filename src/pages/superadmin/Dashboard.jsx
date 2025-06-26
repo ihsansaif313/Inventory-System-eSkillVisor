@@ -3,6 +3,8 @@ import { UserPlusIcon, UsersIcon, Building2Icon, ClockIcon, CheckCircleIcon, Bar
 import ApprovalHeatmap from '../../components/dashboard/superadmin/ApprovalHeatmap.jsx';
 import LiveStats from '../../components/dashboard/superadmin/LiveStats.jsx';
 import ActivityStream from '../../components/dashboard/superadmin/ActivityStream.jsx';
+import { mockCompanies } from '../../data/mockData.js';
+import CompanyLogo from '../../components/ui/CompanyLogo.jsx';
 const SuperadminDashboard = () => {
   return <div className="p-4 sm:p-6">
       <div className="mb-6 sm:mb-8">
@@ -152,6 +154,53 @@ const SuperadminDashboard = () => {
             Activity Stream
           </h3>
           <ActivityStream />
+        </div>
+
+        {/* Company Monitoring */}
+        <div className="lg:col-span-4 data-card">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-bold text-neutral-dark">
+              Company Portfolio Overview
+            </h3>
+            <button className="text-sm text-primary hover:text-primary-dark flex items-center">
+              View All
+              <ArrowRightIcon size={16} className="ml-1" />
+            </button>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {mockCompanies.slice(0, 8).map(company => (
+              <div key={company.id} className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+                <div className="flex items-center mb-3">
+                  <CompanyLogo
+                    logoUrl={company.logoUrl}
+                    companyName={company.name}
+                    size="sm"
+                    showInitials={true}
+                  />
+                  <div className="ml-3 flex-1 min-w-0">
+                    <h4 className="text-sm font-medium text-gray-900 truncate">
+                      {company.name}
+                    </h4>
+                    <p className="text-xs text-gray-500 truncate">
+                      {company.partner}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                    company.status === 'active'
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-yellow-100 text-yellow-800'
+                  }`}>
+                    {company.status === 'active' ? 'Active' : 'Pending'}
+                  </span>
+                  <div className="text-xs text-gray-600">
+                    ${(company.investment / 1000000).toFixed(1)}M
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>;

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { BuildingIcon, SearchIcon, TrashIcon, UserIcon, FileTextIcon, DollarSignIcon, PlusIcon, TrendingUpIcon, TrendingDownIcon } from 'lucide-react';
+import { mockCompanies, mockPartners } from '../../data/mockData.js';
+import CompanyLogo from '../../components/ui/CompanyLogo.jsx';
+import LogoSelector from '../../components/ui/LogoSelector.jsx';
 const CompanyManagement = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showTransactionModal, setShowTransactionModal] = useState(false);
@@ -9,76 +12,18 @@ const CompanyManagement = () => {
   const [newCompanyData, setNewCompanyData] = useState({
     name: '',
     partner: '',
-    investment: ''
+    investment: '',
+    logoUrl: '',
+    industry: '',
+    location: ''
   });
   const [transactionData, setTransactionData] = useState({
     amount: '',
     description: ''
   });
-  // Mock data
-  const companies = [{
-    id: 1,
-    name: 'Acme Corp',
-    partner: 'John Smith',
-    status: 'active',
-    investment: 250000,
-    revenue: 320000,
-    profit: 70000,
-    documentComplete: true
-  }, {
-    id: 2,
-    name: 'TechStart Inc',
-    partner: 'Michael Brown',
-    status: 'active',
-    investment: 180000,
-    revenue: 210000,
-    profit: 30000,
-    documentComplete: true
-  }, {
-    id: 3,
-    name: 'Global Ventures',
-    partner: 'Robert Wilson',
-    status: 'pending_approval',
-    investment: 120000,
-    revenue: 0,
-    profit: 0,
-    documentComplete: false
-  }, {
-    id: 4,
-    name: 'Future Fund',
-    partner: 'Jennifer Lee',
-    status: 'pending_approval',
-    investment: 300000,
-    revenue: 0,
-    profit: 0,
-    documentComplete: true
-  }, {
-    id: 5,
-    name: 'Capital Partners',
-    partner: 'David Chen',
-    status: 'active',
-    investment: 420000,
-    revenue: 380000,
-    profit: -40000,
-    documentComplete: true
-  }];
-  // Mock partners for dropdown
-  const partners = [{
-    id: 1,
-    name: 'John Smith'
-  }, {
-    id: 2,
-    name: 'Michael Brown'
-  }, {
-    id: 3,
-    name: 'Robert Wilson'
-  }, {
-    id: 4,
-    name: 'Jennifer Lee'
-  }, {
-    id: 5,
-    name: 'David Chen'
-  }];
+  // Use enhanced mock data
+  const companies = mockCompanies;
+  const partners = mockPartners;
   const getStatusBadge = status => {
     switch (status) {
       case 'active':
@@ -102,7 +47,10 @@ const CompanyManagement = () => {
     setNewCompanyData({
       name: '',
       partner: '',
-      investment: ''
+      investment: '',
+      logoUrl: '',
+      industry: '',
+      location: ''
     });
   };
   const handleSubmitTransaction = e => {
@@ -189,12 +137,18 @@ const CompanyManagement = () => {
               {filteredCompanies.map(company => <tr key={company.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className="h-10 w-10 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center text-secondary">
-                        <BuildingIcon className="h-5 w-5" />
-                      </div>
+                      <CompanyLogo
+                        logoUrl={company.logoUrl}
+                        companyName={company.name}
+                        size="md"
+                        showInitials={true}
+                      />
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">
                           {company.name}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {company.industry}
                         </div>
                       </div>
                     </div>
@@ -296,6 +250,34 @@ const CompanyManagement = () => {
                           investment: e.target.value
                         })} required />
                           </div>
+                        </div>
+                        <div>
+                          <label htmlFor="industry" className="block text-sm font-medium text-gray-700">
+                            Industry
+                          </label>
+                          <input type="text" id="industry" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" placeholder="e.g., Technology, Healthcare, Finance" value={newCompanyData.industry} onChange={e => setNewCompanyData({
+                        ...newCompanyData,
+                        industry: e.target.value
+                      })} />
+                        </div>
+                        <div>
+                          <label htmlFor="location" className="block text-sm font-medium text-gray-700">
+                            Location
+                          </label>
+                          <input type="text" id="location" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary" placeholder="e.g., New York, NY" value={newCompanyData.location} onChange={e => setNewCompanyData({
+                        ...newCompanyData,
+                        location: e.target.value
+                      })} />
+                        </div>
+                        <div>
+                          <LogoSelector
+                            selectedLogo={newCompanyData.logoUrl}
+                            onLogoChange={(logoUrl) => setNewCompanyData({
+                              ...newCompanyData,
+                              logoUrl
+                            })}
+                            companyName={newCompanyData.name}
+                          />
                         </div>
                         <div>
                           <label htmlFor="documents" className="block text-sm font-medium text-gray-700">
